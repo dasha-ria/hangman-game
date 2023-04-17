@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const words = [
   "Musical",
   "Planning",
@@ -111,11 +113,11 @@ function randomiseWord() {
 
 export default function Home() {
   return (
-    <>
+    <div className="h-screen w-screen bg-white">
       <p>{randomiseWord()}</p>
-      <input type="text"></input>
+      <input type="text" className="border border-black"></input>
       <button>Guess</button>
-    </>
+    </div>
   );
 }
 

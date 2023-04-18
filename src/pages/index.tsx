@@ -111,6 +111,8 @@ function randomiseWord() {
   return words[randomIndex];
 }
 
+const points = 5;
+
 function renderWord(word, guesses) {
   return word
     .split("")
@@ -124,8 +126,32 @@ function renderWord(word, guesses) {
     .join(" ");
 }
 
+function isWordGuessed(word, guesses) {
+  return word.split("").every((char) => guesses.includes(char));
+}
+
+function countAttemptsLeft(word, guesses) {
+  const maxAttempts = 5;
+  const wrongGuesses = guesses.filter((g) => !word.includes(g)).length;
+
+  const attemptsLeft = maxAttempts - wrongGuesses;
+
+  return attemptsLeft;
+}
+
 export default function Home({ randomWord }) {
   const [guesses, setGuesses] = useState([]);
+
+  const attemptsLeft = countAttemptsLeft(randomWord, guesses);
+  const gameState = (() => {
+    if (attemptsLeft <= 0) {
+      return "Lost";
+    } else if (isWordGuessed(randomWord, guesses)) {
+      return "Won";
+    } else {
+      return "Playing";
+    }
+  })();
 
   useEffect(() => {
     function handleKeyPress(e) {
@@ -152,6 +178,7 @@ export default function Home({ randomWord }) {
 
   return (
     <div className="h-screen w-screen bg-white">
+      {gameState}
       <p>{renderWord(randomWord, guesses)}</p>
       <ul>
         {guesses.map((guess) => (

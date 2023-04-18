@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const words = [
   "Musical",
@@ -111,16 +111,58 @@ function randomiseWord() {
   return words[randomIndex];
 }
 
-export default function Home() {
+function renderWord(word, guesses) {
+  return word
+    .split("")
+    .map((char) => {
+      if (guesses.includes(char)) {
+        return char;
+      } else {
+        return "_";
+      }
+    })
+    .join(" ");
+}
+
+export default function Home({ randomWord }) {
+  const [guesses, setGuesses] = useState([]);
+
+  useEffect(() => {
+    function handleKeyPress(e) {
+      const keyCode = e.keyCode;
+      if (
+        (keyCode >= 65 && keyCode <= 90) ||
+        (keyCode >= 97 && keyCode <= 122)
+      ) {
+        const letter = e.key.toLowerCase();
+        setGuesses((g) => {
+          if (g.includes(letter)) {
+            return g;
+          } else {
+            return [...g, letter];
+          }
+        });
+      }
+    }
+
+    document.addEventListener("keypress", handleKeyPress);
+
+    return () => document.removeEventListener("keypress", handleKeyPress);
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-white">
-      <p>{randomiseWord()}</p>
-      <input type="text" className="border border-black"></input>
+      <p>{renderWord(randomWord, guesses)}</p>
+      <ul>
+        {guesses.map((guess) => (
+          <li key={guess}>{guess}</li>
+        ))}
+      </ul>
       <button>Guess</button>
     </div>
   );
 }
 
 export const getServerSideProps = () => {
-  return { props: { randomWord: randomiseWord() } };
+  return { props: { randomWord: randomiseWord().toLowerCase() } };
 };

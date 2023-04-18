@@ -153,6 +153,16 @@ export default function Home({ randomWord }) {
     }
   })();
 
+  const message = (() => {
+    if (gameState === "Lost") {
+      return `You suck :( the answer is ${randomWord}`;
+    } else if (gameState === "Won") {
+      return "Congrats! You won :)";
+    } else {
+      return null;
+    }
+  })();
+
   useEffect(() => {
     function handleKeyPress(e) {
       if (gameState === "Playing") {
@@ -180,14 +190,15 @@ export default function Home({ randomWord }) {
 
   return (
     <div className="h-screen w-screen bg-white">
-      {gameState}
+      {message}
+
+      <p>You have {attemptsLeft} attempts left</p>
       <p>{renderWord(randomWord, guesses)}</p>
       <ul>
         {guesses.map((guess) => (
           <li key={guess}>{guess}</li>
         ))}
       </ul>
-      <button>Guess</button>
     </div>
   );
 }

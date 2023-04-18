@@ -155,26 +155,28 @@ export default function Home({ randomWord }) {
 
   useEffect(() => {
     function handleKeyPress(e) {
-      const keyCode = e.keyCode;
-      if (
-        (keyCode >= 65 && keyCode <= 90) ||
-        (keyCode >= 97 && keyCode <= 122)
-      ) {
-        const letter = e.key.toLowerCase();
-        setGuesses((g) => {
-          if (g.includes(letter)) {
-            return g;
-          } else {
-            return [...g, letter];
-          }
-        });
+      if (gameState === "Playing") {
+        const keyCode = e.keyCode;
+        if (
+          (keyCode >= 65 && keyCode <= 90) ||
+          (keyCode >= 97 && keyCode <= 122)
+        ) {
+          const letter = e.key.toLowerCase();
+          setGuesses((g) => {
+            if (g.includes(letter)) {
+              return g;
+            } else {
+              return [...g, letter];
+            }
+          });
+        }
       }
     }
 
     document.addEventListener("keypress", handleKeyPress);
 
     return () => document.removeEventListener("keypress", handleKeyPress);
-  }, []);
+  }, [gameState]);
 
   return (
     <div className="h-screen w-screen bg-white">

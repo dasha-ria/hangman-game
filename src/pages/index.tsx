@@ -189,16 +189,13 @@ export default function Home({ randomWord }) {
   }, [gameState]);
 
   return (
-    <div className="h-screen w-screen bg-white">
+    <div className="h-screen w-screen bg-white text-black">
       {message}
 
       <p>You have {attemptsLeft} attempts left</p>
       <p>{renderWord(randomWord, guesses)}</p>
-      <ul>
-        {guesses.map((guess) => (
-          <li key={guess}>{guess}</li>
-        ))}
-      </ul>
+      <p>{guesses.join(" ")}</p>
+      <img src={`img-${attemptsLeft}.jpg`} className="w-96 h-auto"></img>
     </div>
   );
 }

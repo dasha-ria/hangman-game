@@ -196,6 +196,93 @@ export default function Home({ randomWord }) {
       <p>{renderWord(randomWord, guesses)}</p>
       <p>{guesses.join(" ")}</p>
       <img src={`img-${attemptsLeft}.jpg`} className="w-96 h-auto"></img>
+
+      <div className="flex flex-col items-center gap-1">
+        <div className="flex gap-1">
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            q
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            w
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            e
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            r
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            t
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            y
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            u
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            i
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            o
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            p
+          </kbd>
+        </div>
+        <div className="flex gap-1 items-center">
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            a
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            s
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            d
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            f
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            g
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            h
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            j
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            k
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            l
+          </kbd>
+        </div>
+        <div className="flex gap-1 items-center">
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            z
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            x
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            c
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            v
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            b
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            n
+          </kbd>
+          <kbd className="w-5 bg-gray-200 rounded-sm flex justify-center">
+            m
+          </kbd>
+        </div>
+      </div>
     </div>
   );
 }
